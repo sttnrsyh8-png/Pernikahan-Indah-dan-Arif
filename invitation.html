@@ -63,6 +63,34 @@
 
     <p style="text-align:center;margin-top:40px;">With love,<br><strong>Indah &amp; Arif 💛</strong></p>
   </div>
+<audio id="soft-piano-music-10-minutes-long-231315.mp3" autoplay loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
+<script>
+  // Pastikan musik bisa diputar otomatis, atau munculkan tombol jika diblokir
+  window.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('bgAudio');
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Jika autoplay diblokir, buat tombol manual
+        const btn = document.createElement('button');
+        btn.textContent = '🎵 Play Music';
+        btn.style.position = 'fixed';
+        btn.style.bottom = '20px';
+        btn.style.right = '20px';
+        btn.style.padding = '10px 15px';
+        btn.style.borderRadius = '30px';
+        btn.style.background = '#f5c6aa';
+        btn.style.border = 'none';
+        btn.style.color = 'white';
+        btn.style.fontWeight = 'bold';
+        btn.style.cursor = 'pointer';
+        btn.onclick = () => { audio.play(); btn.remove(); };
+        document.body.appendChild(btn);
+      });
+    }
+  });
 
   <script>
     // countdown
