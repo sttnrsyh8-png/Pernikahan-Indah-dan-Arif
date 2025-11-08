@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Wedding of Indah & Arif</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fffdf8;
+      --text:#222;
+      --muted:#6b6b6b;
+      --gold:#d4af37;
+      --sage:#9aa18f;
+      --card:#ffffff;
+      --maxw:980px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Poppins",system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+
+    /* floral frame top/bottom */
+    .floral-top, .floral-bottom{
+      width:100%;display:block;max-height:160px;object-fit:cover;opacity:0.95;
+    }
+
+    /* Header / Cover */
+    .cover{
+      text-align:center;padding:48px 16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(254,248,238,1));
+      margin-bottom:18px;
+    }
+    .cover .label{font-size:14px;color:var(--muted);margin-bottom:6px}
+    .cover h1{font-family:"Playfair Display",serif;font-size:46px;margin:6px 0;color:var(--text);letter-spacing:0.4px}
+    .cover p.sub{margin:6px 0 14px;color:var(--muted);font-weight:600}
+    .recipient{display:inline-block;padding:8px 14px;border-radius:20px;background:rgba(0,0,0,0.03);margin-top:8px;font-weight:600}
+
+    .btn-open{margin-top:18px;background:var(--gold);color:#111;padding:10px 20px;border:none;border-radius:999px;font-weight:700;cursor:pointer}
+    .meta{margin-top:12px;color:var(--muted);font-size:13px}
+
+    /* sections */
+    section{padding:28px 12px;border-radius:12px;margin:18px 0;background:linear-gradient(180deg,#fff,#fffdf8);box-shadow:0 6px 20px rgba(0,0,0,0.04)}
+    h2{font-family:"Playfair Display",serif;color:var(--gold);font-size:28px;margin:6px 0 12px}
+    .lead{color:var(--muted);margin-bottom:12px}
+
+    .two-col{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:760px){ .two-col{grid-template-columns:1fr 1fr} }
+
+    .profile {text-align:center}
+    .profile .name{font-weight:700;font-size:18px;color:#333}
+    .profile .meta-small{color:var(--muted);font-size:14px;margin-top:6px}
+
+    .event-item{text-align:center;padding:14px;border-radius:10px;border:1px solid rgba(0,0,0,0.03)}
+    .event-item .time{font-weight:700;font-size:18px;color:#222;margin-top:8px}
+    .maps-link{color:var(--sage);font-weight:700;text-decoration:none}
+
+    /* guestbook */
+    .guest-form{display:flex;flex-direction:column;gap:8px;max-width:760px;margin:0 auto}
+    .guest-form input,.guest-form textarea{padding:10px;border-radius:8px;border:1px solid #eee;font-size:14px}
+    .guest-form button{background:var(--gold);border:none;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+    .messages{margin-top:12px;display:flex;flex-direction:column;gap:10px;max-height:360px;overflow:auto}
+    .msg{background:#fff;border-radius:10px;padding:12px;border-left:4px solid rgba(212,175,55,0.6)}
+    .msg strong{display:block;color:#333}
+
+    /* countdown */
+    .countdown{font-size:18px;font-weight:800;color:var(--text);text-align:center}
+    .smallmuted{color:var(--muted);font-size:13px;text-align:center;margin-top:6px}
+
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:14px;padding-bottom:24px}
+    .note{font-size:13px;color:var(--muted);text-align:center;margin-top:8px}
+
+    /* audio control fallback */
+    .audio-control{margin-top:10px;text-align:center}
+    .audio-control button{background:#fff;border:1px solid #eee;padding:8px 12px;border-radius:8px;cursor:pointer}
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- floral top -->
+    <img src="https://i.ibb.co/BLz9y2k/floral-top.png" alt="" class="floral-top" />
+
+    <!-- Cover -->
+    <div class="cover" role="banner" aria-label="Cover">
+      <div class="label">The Wedding of</div>
+      <h1>Indah &amp; Arif</h1>
+      <p class="sub">December 3, 2025</p>
+      <div id="recipient" class="recipient" aria-live="polite"></div>
+
+      <div class="meta">Aluppange, Wajo — Indonesia</div>
+
+      <div class="note" style="margin-top:14px">Music will begin upon opening — please allow audio in your browser if it is blocked.</div>
+    </div>
+
+    <!-- Opening quote -->
+    <section>
+      <h2>Opening</h2>
+      <p class="lead">“Glory be to Allah who created everything in pairs.”</p>
+    </section>
+
+    <!-- Profiles -->
+    <section>
+      <h2>Bride &amp; Groom</h2>
+      <div class="two-col">
+        <div class="profile">
+          <div class="name">👰 Nur Indah Sari, S.M.</div>
+          <div class="profile-pt">Second daughter of Bapak Maggalatung &amp; (Almh.) Ibu Sumarni</div>
+        </div>
+        <div class="profile">
+          <div class="name">🤵 Muhammad Arif, S.A.P.</div>
+          <div class="profile-pt">Third son of Bapak H. Ruslan &amp; Ibu Hj. Nurlela</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events -->
+    <section>
+      <h2>Ceremony & Reception</h2>
+      <div class="two-col">
+        <div class="event-item">
+          <div style="font-size:14px;color:var(--muted)">Ceremony (Akad Nikah)</div>
+          <div class="time">Wednesday, December 3, 2025 — 11:00 WITA</div>
+          <div class="smallmuted">Jl. Poros Kulampu–Solo, Dusun Aluppange, Desa Alewadeng, Kec. Sajoanging, Kab. Wajo</div>
+          <div style="margin-top:10px"><a class="maps-link" href="https://maps.app.goo.gl/52bUetkWoo8VFB3g8" target="_blank" rel="noopener">Open Google Maps</a></div>
+        </div>
+        <div class="event-item">
+          <div style="font-size:14px;color:var(--muted)">Reception</div>
+          <div class="time">11:00 WITA — Until finish</div>
+          <div class="smallmuted">Venue: Same as ceremony</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prayer & Wishes + Guestbook -->
+    <section>
+      <h2>Prayer &amp; Wishes</h2>
+      <div class="lead">بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</div>
+      <div style="color:var(--muted);margin-bottom:12px">Barakallahu laka wa baraka 'alaika wajama'a bainakuma fii khairin</div>
+
+      <div style="max-width:820px;margin:12px auto 0">
+        <form id="guestForm" class="guest-form" autocomplete="off">
+          <input id="guestName" type="text" placeholder="Your name" required />
+          <textarea id="guestMsg" rows="4" placeholder="Write your prayer, wish, or short message" required></textarea>
+          <div style="display:flex;gap:10px;justify-content:center;margin-top:6px">
+            <button type="submit">Send Wish</button>
+            <button type="button" id="clearAll" style="background:#eee;color:#333;border:none;padding:10px 12px;border-radius:10px;cursor:pointer">Clear Local</button>
+          </div>
+        </form>
+
+        <div id="messages" class="messages" aria-live="polite" style="margin-top:14px"></div>
+      </div>
+    </section>
+
+    <!-- Countdown -->
+    <section>
+      <h2>Countdown</h2>
+      <div class="countdown" id="countdownDisplay">— days · — : — : —</div>
+      <div class="smallmuted">Event: December 3, 2025 — 11:00 WITA</div>
+    </section>
+
+    <!-- Closing -->
+    <section>
+      <h2>With Love</h2>
+      <p class="lead">With heartfelt gratitude we invite you to celebrate with us.</p>
+      <div style="text-align:center;font-weight:700">Nur Indah Sari &amp; Muhammad Arif</div>
+    </section>
+
+    <!-- floral bottom -->
+    <img src="https://i.ibb.co/7Yc1sZP/floral-bottom.png" alt="" class="floral-bottom" />
+
+    <footer>
+      <div>Use <code>?to=Name</code> in the URL to personalize (e.g. <em>?to=Fitriani</em>).</div>
+      <div style="margin-top:6px;color:var(--muted)">Saved guest wishes are visible to visitors of this site (stored in browser/localStorage).</div>
+    </footer>
+  </div>
+
+  <!-- Audio: acoustic romantic (remote file) -->
+  <audio id="bgAudio" src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_7d6b3e4a9b.mp3?filename=acoustic-romantic-12610.mp3" preload="auto"></audio>
+
+  <script>
+    // personalization: show recipient from ?to=Name
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const r = params.get('to');
+      const recEl = document.getElementById('recipient');
+      if(r && r.trim()) recEl.textContent = 'Dear ' + decodeURIComponent(r);
+      else recEl.textContent = '';
+    })();
+
+    // autoplay attempt: play immediately when page loads
+    window.addEventListener('load', function(){
+      const audio = document.getElementById('bgAudio');
+      // try to play; browsers may block until user interaction
+      audio.volume = 0.85;
+      const tryPlay = audio.play();
+      if(tryPlay !== undefined){
+        tryPlay.then(()=> {
+          // playing
+        }).catch(()=> {
+          // blocked; provide small control for user to start audio
+          const ctrl = document.createElement('div');
+          ctrl.className = 'audio-control';
+          ctrl.innerHTML = '<button onclick="document.getElementById(\\'bgAudio\\').play(); this.style.display=\\'none\\'">Play Music</button>';
+          document.querySelector('.cover').appendChild(ctrl);
+        });
+      }
+    });
+
+    // Smooth scroll when guest clicks Open invitation (scroll to content)
+    document.querySelector('.btn-open').addEventListener('click', function(){
+      // scroll to top of first section after cover
+      const firstSection = document.querySelector('section');
+      if(firstSection) firstSection.scrollIntoView({behavior:'smooth'});
+    });
+
+    // Guestbook using localStorage (public to origin)
+    (function(){
+      const storageKey = 'indah_arif_guestbook_final_v1';
+      const form = document.getElementById('guestForm');
+      const nameInput = document.getElementById('guestName');
+      const msgInput = document.getElementById('guestMsg');
+      const messagesDiv = document.getElementById('messages');
+      const clearBtn = document.getElementById('clearAll');
+
+      function loadMessages(){
+        let raw = localStorage.getItem(storageKey);
+        let arr = [];
+        try{ arr = raw ? JSON.parse(raw) : []; } catch(e){ arr = [] }
+        messagesDiv.innerHTML = '';
+        arr.slice().reverse().forEach(item=>{
+          const el = document.createElement('div');
+          el.className = 'msg';
+          el.innerHTML = '<strong>' + escapeHtml(item.name) + '</strong><div style="color:var(--muted);margin-top:6px">' + escapeHtml(item.message) + '</div><div style="margin-top:8px;font-size:12px;color:#999">' + new Date(item.t).toLocaleString() + '</div>';
+          messagesDiv.appendChild(el);
+        });
+      }
+
+      function saveMessage(n,m){
+        let raw = localStorage.getItem(storageKey);
+        let arr = [];
+        try{ arr = raw ? JSON.parse(raw) : []; } catch(e){ arr = [] }
+        arr.push({name:n, message:m, t:Date.now()});
+        try{ localStorage.setItem(storageKey, JSON.stringify(arr)); } catch(e){ console.warn('storage failed', e) }
+        loadMessages();
+      }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const n = nameInput.value.trim();
+        const m = msgInput.value.trim();
+        if(!n || !m) return;
+        saveMessage(n,m);
+        form.reset();
+        // feedback
+        const btn = form.querySelector('button[type="submit"]');
+        const old = btn.textContent;
+        btn.textContent = 'Sent ✓';
+        setTimeout(()=> btn.textContent = old, 1200);
+      });
+
+      clearBtn.addEventListener('click', function(){
+        if(confirm('Clear all guestbook entries from this browser? This removes local entries only.')){
+          localStorage.removeItem(storageKey);
+          loadMessages();
+        }
+      });
+
+      function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m] }) }
+
+      // init
+      loadMessages();
+    })();
+
+    // Countdown to 3 Dec 2025 11:00 WITA (WITA = UTC+8)
+    (function(){
+      function getTargetUTC(){
+        // 2025-12-03 11:00 WITA -> UTC = 03:00
+        return Date.UTC(2025,11,3,3,0,0);
+      }
+      const target = getTargetUTC();
+      const el = document.getElementById('countdownDisplay');
+
+      function update(){
+        const now = Date.now();
+        let diff = target - now;
+        if(diff <= 0){ el.textContent = 'Wedding Day — Congratulations!'; return; }
+        const days = Math.floor(diff / (1000*60*60*24));
+        diff -= days * (1000*60*60*24);
+        const hours = Math.floor(diff / (1000*60*60));
+        diff -= hours * (1000*60*60);
+        const minutes = Math.floor(diff / (1000*60));
+        diff -= minutes * (1000*60);
+        const seconds = Math.floor(diff / 1000);
+        el.textContent = `${days} days · ${String(hours).padStart(2,'0')} : ${String(minutes).padStart(2,'0')} : ${String(seconds).padStart(2,'0')}`;
+      }
+      update();
+      setInterval(update,1000);
+    })();
+
+  </script>
+</body>
+</html>
