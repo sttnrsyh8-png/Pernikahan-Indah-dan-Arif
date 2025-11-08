@@ -1,69 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Wedding of Indah & Arif</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    body{
-      margin:0;
-      font-family:"Poppins",sans-serif;
-      background:#fffdf8;
-      color:#333;
-      text-align:center;
-      -webkit-font-smoothing:antialiased;
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom right, #fffaf4, #f9f6ef);
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      text-align: center;
+      overflow: hidden;
     }
-    h1{font-family:"Playfair Display",serif;font-size:46px;margin:10px 0;}
-    .container{padding:60px 20px;}
-    .btn{
-      display:inline-block;
-      background:#d4af37;
-      color:#111;
-      padding:12px 28px;
-      border-radius:999px;
-      font-weight:700;
-      text-decoration:none;
-      margin-top:24px;
+    .container {
+      padding: 100px 20px;
     }
-    .note{font-size:13px;color:#777;margin-top:14px;}
-    .recipient{margin-top:12px;font-weight:600;color:#555;}
-    .audio-control button{background:#fff;border:1px solid #eee;padding:10px 14px;border-radius:10px;cursor:pointer;}
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: #b4955a;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #666;
+      font-size: 18px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 14px 30px;
+      background-color: #d4af37;
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn:hover { background-color: #b5952f; }
+    #recipient {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #444;
+      font-weight: 500;
+    }
+    #music-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #d4af37;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      cursor: pointer;
+      font-size: 22px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>The Wedding of<br>Indah &amp; Arif</h1>
+    <h1>Indah & Arif</h1>
     <p>December 3, 2025</p>
-    <div id="recipient" class="recipient"></div>
-    <a id="openBtn" class="btn">Open Invitation</a>
-    <p class="note">Music will begin automatically (please allow audio in your browser).</p>
-    <div id="musicControl" class="audio-control"></div>
+    <div id="recipient"></div>
+    <a href="#" id="openBtn" class="btn">Open Invitation</a>
   </div>
 
-  <audio id="bgAudio" src="https://youtu.be/dElRVQFqj-k?si=GWeAuWVkjPJtZ8E-"
+  <audio id="bgAudio" src="soft-piano-music-10-minutes-long-231315" loop></audio>
+  <button id="music-btn">🎵</button>
 
   <script>
-    // show recipient name
-    const params = new URLSearchParams(location.search);
-    const to = params.get('to');
-    if(to) document.getElementById('recipient').textContent = 'Dear ' + decodeURIComponent(to);
-
-    // autoplay attempt
     const audio = document.getElementById('bgAudio');
-    audio.volume = 0.8;
-    const tryPlay = audio.play();
-    if(tryPlay) tryPlay.catch(()=>{
-      const btn = document.createElement('button');
-      btn.textContent = '🎵 Play Music';
-      btn.onclick = ()=>{ audio.play(); btn.remove(); };
-      document.getElementById('musicControl').appendChild(btn);
-    });
+    const btn = document.getElementById('music-btn');
+    const params = new URLSearchParams(window.location.search);
+    const to = params.get('to');
+    if (to) document.getElementById('recipient').textContent = 'Dear ' + decodeURIComponent(to);
+    
+    let isPlaying = false;
+    btn.onclick = () => {
+      if (isPlaying) { audio.pause(); btn.textContent = '🔇'; }
+      else { audio.play(); btn.textContent = '🎵'; }
+      isPlaying = !isPlaying;
+    };
 
-    // open invitation
-    document.getElementById('openBtn').onclick = ()=>{
-      const dest = 'invitation.html' + (to ? '?to=' + encodeURIComponent(to) : '');
-      location.href = dest;
+    // auto play on load
+    audio.volume = 0.7;
+    audio.play().then(() => { isPlaying = true; }).catch(() => {});
+
+    // persist music to next page
+    document.getElementById('openBtn').onclick = (e) => {
+      e.preventDefault();
+      sessionStorage.setItem('musicPlaying', 'true');
+      sessionStorage.setItem('musicTime', audio.currentTime);
+      window.location.href = 'invitation.html' + (to ? '?to=' + encodeURIComponent(to) : '');
     };
   </script>
 </body>
