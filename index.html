@@ -41,12 +41,15 @@
     <div id="musicControl" class="audio-control"></div>
   </div>
 
-  <audio id="bgAudio" src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_7d6b3e4a9b.mp3?filename=acoustic-romantic-12610.mp3" loop></audio>
+  <audio id="bgAudio" src="https://youtu.be/dElRVQFqj-k?si=GWeAuWVkjPJtZ8E-"
 
   <script>
+    // show recipient name
     const params = new URLSearchParams(location.search);
     const to = params.get('to');
     if(to) document.getElementById('recipient').textContent = 'Dear ' + decodeURIComponent(to);
+
+    // autoplay attempt
     const audio = document.getElementById('bgAudio');
     audio.volume = 0.8;
     const tryPlay = audio.play();
@@ -56,6 +59,8 @@
       btn.onclick = ()=>{ audio.play(); btn.remove(); };
       document.getElementById('musicControl').appendChild(btn);
     });
+
+    // open invitation
     document.getElementById('openBtn').onclick = ()=>{
       const dest = 'invitation.html' + (to ? '?to=' + encodeURIComponent(to) : '');
       location.href = dest;
