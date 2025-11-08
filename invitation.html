@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Indah & Arif - Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:"Poppins",sans-serif;background:#fffdf8;color:#333;}
+    .container{max-width:900px;margin:0 auto;padding:28px;}
+    h2{font-family:"Playfair Display",serif;color:#d4af37;font-size:28px;margin-top:40px;}
+    .section{margin-bottom:32px;padding:18px;border-radius:12px;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,0.05);}
+    .profile{text-align:center;margin:10px 0;}
+    .profile strong{display:block;font-size:18px;margin-bottom:4px;}
+    .guestbook{max-width:700px;margin:0 auto;}
+    input,textarea{width:100%;padding:10px;border:1px solid #eee;border-radius:8px;margin-top:6px;font-family:inherit;}
+    button{background:#d4af37;color:#111;border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer;margin-top:8px;}
+    .msg{background:#fff;border-left:4px solid #d4af37;padding:10px;border-radius:8px;margin-top:10px;}
+    .countdown{text-align:center;font-weight:700;font-size:20px;margin-top:10px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="text-align:center;font-family:'Playfair Display',serif;font-size:36px;">The Wedding of Indah &amp; Arif</h1>
+    <p style="text-align:center;">“Glory be to Allah who created everything in pairs.”</p>
+
+    <div class="section">
+      <h2>Bride &amp; Groom</h2>
+      <div class="profile">
+        <strong>Nur Indah Sari, S.M.</strong>
+        Second daughter of Bapak Maggalatung &amp; (Almh.) Ibu Sumarni
+      </div>
+      <div class="profile">
+        <strong>Muhammad Arif, S.A.P.</strong>
+        Third son of Bapak H. Ruslan &amp; Ibu Hj. Nurlela
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Ceremony & Reception</h2>
+      <p><strong>Akad Nikah:</strong> Wednesday, December 3, 2025 — 11:00 WITA</p>
+      <p><strong>Resepsi:</strong> 11:00 WITA – Until finish</p>
+      <p>Location: Jl. Poros Kulampu–Solo, Dusun Aluppange, Desa Alewadeng, Kec. Sajoanging, Kab. Wajo</p>
+      <p><a href="https://maps.app.goo.gl/52bUetkWoo8VFB3g8" target="_blank">📍 View on Google Maps</a></p>
+    </div>
+
+    <div class="section">
+      <h2>Prayer & Wishes</h2>
+      <p>بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
+      <p><em>Barakallahu laka wa baraka 'alaika wajama'a bainakuma fii khairin</em></p>
+      <div class="countdown" id="countdownDisplay"></div>
+    </div>
+
+    <div class="section guestbook">
+      <h2>Guest Wishes</h2>
+      <form id="guestForm">
+        <input id="guestName" type="text" placeholder="Your name" required>
+        <textarea id="guestMsg" rows="3" placeholder="Write your wishes" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+      <div id="messages"></div>
+    </div>
+
+    <p style="text-align:center;margin-top:40px;">With love,<br><strong>Indah &amp; Arif 💛</strong></p>
+  </div>
+
+  <script>
+    (function(){
+      const target = new Date('2025-12-03T11:00:00+08:00').getTime();
+      const el = document.getElementById('countdownDisplay');
+      function update(){
+        const now = Date.now();
+        let diff = target - now;
+        if(diff<=0){el.textContent='Wedding Day — Congratulations!';return;}
+        const d=Math.floor(diff/86400000);
+        const h=Math.floor((diff%86400000)/3600000);
+        const m=Math.floor((diff%3600000)/60000);
+        const s=Math.floor((diff%60000)/1000);
+        el.textContent=`${d} days ${h}:${m}:${s}`;
+      }
+      update(); setInterval(update,1000);
+    })();
+
+    (function(){
+      const key='guestbook_indah_arif';
+      const form=document.getElementById('guestForm');
+      const messages=document.getElementById('messages');
+      function render(){
+        let arr=JSON.parse(localStorage.getItem(key)||'[]');
+        messages.innerHTML='';
+        arr.slice().reverse().forEach(i=>{
+          const div=document.createElement('div');
+          div.className='msg';
+          div.innerHTML='<strong>'+escape(i.name)+'</strong><div>'+escape(i.msg)+'</div>';
+          messages.appendChild(div);
+        });
+      }
+      form.onsubmit=e=>{
+        e.preventDefault();
+        const n=form.guestName.value.trim(),m=form.guestMsg.value.trim();
+        if(!n||!m)return;
+        const arr=JSON.parse(localStorage.getItem(key)||'[]');
+        arr.push({name:n,msg:m});
+        localStorage.setItem(key,JSON.stringify(arr));
+        form.reset();render();
+      };
+      function escape(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',''':'&#39;'}[m]))}
+      render();
+    })();
+  </script>
+</body>
+</html>
