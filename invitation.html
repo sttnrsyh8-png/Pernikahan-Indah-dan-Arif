@@ -6,137 +6,254 @@
   <title>Indah & Arif - Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    body{margin:0;font-family:"Poppins",sans-serif;background:#fffdf8;color:#333;}
-    .container{max-width:900px;margin:0 auto;padding:28px;}
-    h2{font-family:"Playfair Display",serif;color:#d4af37;font-size:28px;margin-top:40px;}
-    .section{margin-bottom:32px;padding:18px;border-radius:12px;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,0.05);}
-    .profile{text-align:center;margin:10px 0;}
-    .profile strong{display:block;font-size:18px;margin-bottom:4px;}
-    .guestbook{max-width:700px;margin:0 auto;}
-    input,textarea{width:100%;padding:10px;border:1px solid #eee;border-radius:8px;margin-top:6px;font-family:inherit;}
-    button{background:#d4af37;color:#111;border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer;margin-top:8px;}
-    .msg{background:#fff;border-left:4px solid #d4af37;padding:10px;border-radius:8px;margin-top:10px;}
-    .countdown{text-align:center;font-weight:700;font-size:20px;margin-top:10px;}
+    body{margin:0;font-family:"Poppins",sans-serif;background:#fffdf8;color:#333}
+    .wrap{max-width:960px;margin:0 auto;padding:28px}
+    h1{font-family:"Playfair Display",serif;text-align:center;color:#2b2b2b}
+    section{background:#fff;padding:20px;border-radius:12px;margin:18px 0;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+    h2{font-family:"Playfair Display",serif;color:#d4af37;margin:6px 0 12px}
+    .guestform input,.guestform textarea{width:100%;padding:10px;border:1px solid #eee;border-radius:8px;margin-top:8px}
+    .btn-send{background:#d4af37;border:none;padding:10px 14px;border-radius:8px;font-weight:700;cursor:pointer;margin-top:8px}
+    .messages{margin-top:12px;display:flex;flex-direction:column;gap:10px;max-height:420px;overflow:auto}
+    .msg{padding:12px;border-radius:10px;background:#fff;border-left:4px solid rgba(212,175,55,0.6)}
+    .meta{color:#777;font-size:13px;margin-top:6px}
+    .audio-toggle{position:fixed;right:18px;bottom:18px;background:#d4af37;color:#111;border-radius:999px;border:none;padding:12px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.12)}
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1 style="text-align:center;font-family:'Playfair Display',serif;font-size:36px;">The Wedding of Indah &amp; Arif</h1>
-    <p style="text-align:center;">“Glory be to Allah who created everything in pairs.”</p>
+  <div class="wrap">
+    <h1>The Wedding of Indah &amp; Arif</h1>
+    <p style="text-align:center;color:#666">“Glory be to Allah who created everything in pairs.”</p>
 
-    <div class="section">
+    <section>
       <h2>Bride &amp; Groom</h2>
-      <div class="profile">
-        <strong>Nur Indah Sari, S.M.</strong>
-        Second daughter of Bapak Maggalatung &amp; (Almh.) Ibu Sumarni
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div>
+          <strong>Nur Indah Sari, S.M.</strong><div style="color:#666;margin-top:6px">Second daughter of Bapak Maggalatung &amp; (Almh.) Ibu Sumarni</div>
+        </div>
+        <div>
+          <strong>Muhammad Arif, S.A.P.</strong><div style="color:#666;margin-top:6px">Third son of Bapak H. Ruslan &amp; Ibu Hj. Nurlela</div>
+        </div>
       </div>
-      <div class="profile">
-        <strong>Muhammad Arif, S.A.P.</strong>
-        Third son of Bapak H. Ruslan &amp; Ibu Hj. Nurlela
-      </div>
-    </div>
+    </section>
 
-    <div class="section">
+    <section>
       <h2>Ceremony & Reception</h2>
       <p><strong>Akad Nikah:</strong> Wednesday, December 3, 2025 — 11:00 WITA</p>
       <p><strong>Resepsi:</strong> 11:00 WITA – Until finish</p>
       <p>Location: Jl. Poros Kulampu–Solo, Dusun Aluppange, Desa Alewadeng, Kec. Sajoanging, Kab. Wajo</p>
       <p><a href="https://maps.app.goo.gl/52bUetkWoo8VFB3g8" target="_blank">📍 View on Google Maps</a></p>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Prayer & Wishes</h2>
-      <p>بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
-      <p><em>Barakallahu laka wa baraka 'alaika wajama'a bainakuma fii khairin</em></p>
-      <div class="countdown" id="countdownDisplay"></div>
-    </div>
+    <section>
+      <h2>Prayer &amp; Wishes</h2>
+      <p style="color:#444">بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
+      <p style="color:#777;margin-top:6px"><em>Barakallahu laka wa baraka 'alaika wajama'a bainakuma fii khairin</em></p>
 
-    <div class="section guestbook">
-      <h2>Guest Wishes</h2>
-      <form id="guestForm">
-        <input id="guestName" type="text" placeholder="Your name" required>
-        <textarea id="guestMsg" rows="3" placeholder="Write your wishes" required></textarea>
-        <button type="submit">Send</button>
-      </form>
-      <div id="messages"></div>
-    </div>
+      <!-- Guestbook form -->
+      <div class="guestform" style="margin-top:12px">
+        <input id="name" placeholder="Your name" />
+        <textarea id="message" rows="3" placeholder="Write your prayer or short message"></textarea>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button id="sendBtn" class="btn-send">Send</button>
+          <button id="clearLocal" style="background:#eee;border:none;padding:10px;border-radius:8px;cursor:pointer">Clear local copy</button>
+        </div>
 
-    <p style="text-align:center;margin-top:40px;">With love,<br><strong>Indah &amp; Arif 💛</strong></p>
+        <div id="messages" class="messages" aria-live="polite" style="margin-top:14px"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Countdown</h2>
+      <div id="countdown" style="font-weight:700;text-align:center"></div>
+      <div style="text-align:center;color:#777;margin-top:8px">Event: December 3, 2025 — 11:00 WITA</div>
+    </section>
+
+    <p style="text-align:center;margin-top:28px;color:#666">With love — <strong>Nur Indah Sari &amp; Muhammad Arif</strong></p>
   </div>
-<audio id="soft-piano-music-10-minutes-long-231315.mp3" autoplay loop>
-  <source src="musik.mp3" type="audio/mpeg">
-</audio>
-<script>
-  // Pastikan musik bisa diputar otomatis, atau munculkan tombol jika diblokir
-  window.addEventListener('DOMContentLoaded', () => {
-    const audio = document.getElementById('bgAudio');
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Jika autoplay diblokir, buat tombol manual
-        const btn = document.createElement('button');
-        btn.textContent = '🎵 Play Music';
-        btn.style.position = 'fixed';
-        btn.style.bottom = '20px';
-        btn.style.right = '20px';
-        btn.style.padding = '10px 15px';
-        btn.style.borderRadius = '30px';
-        btn.style.background = '#f5c6aa';
-        btn.style.border = 'none';
-        btn.style.color = 'white';
-        btn.style.fontWeight = 'bold';
-        btn.style.cursor = 'pointer';
-        btn.onclick = () => { audio.play(); btn.remove(); };
-        document.body.appendChild(btn);
-      });
-    }
-  });
+
+  <!-- persistent audio element (will be created if session indicates) -->
+  <audio id="player" src="soft-piano-music-10-minutes-long-231315.mp3" loop></audio>
+  <button id="audioToggle" class="audio-toggle" aria-label="Toggle music">🔇</button>
 
   <script>
-    // countdown
-    (function(){
-      const target = new Date('2025-12-03T11:00:00+08:00').getTime();
-      const el = document.getElementById('countdownDisplay');
-      function update(){
-        const now = Date.now();
-        let diff = target - now;
-        if(diff<=0){el.textContent='Wedding Day — Congratulations!';return;}
-        const d=Math.floor(diff/86400000);
-        const h=Math.floor((diff%86400000)/3600000);
-        const m=Math.floor((diff%3600000)/60000);
-        const s=Math.floor((diff%60000)/1000);
-        el.textContent=`${d} days ${h}:${m}:${s}`;
+  // === CONFIG: ganti BIN_ID & API_KEY dengan data JSONBin mu ===
+  const JSONBIN_ENABLED = true; // set false untuk disable JSONBin
+  const BIN_ID = 'REPLACE_BIN_ID_HERE';          // <-- ganti
+  const JSONBIN_API_KEY = 'REPLACE_API_KEY_HERE';// <-- ganti
+  const JSONBIN_BASE = 'https://api.jsonbin.io/v3/b'; // JSONBin V3 endpoint
+
+  // === Utility: simple profanity filter (very basic) ===
+  const badWords = ['fuck','shit','bitch','anjing','bangsat']; // contoh; bisa perluas
+  function sanitizeText(s){
+    if(!s) return s;
+    let out = String(s);
+    badWords.forEach(w=>{
+      const re = new RegExp(w,'gi');
+      out = out.replace(re, '***');
+    });
+    return out;
+  }
+
+  // === Countdown ===
+  (function(){
+    const target = Date.UTC(2025,11,3,3,0,0); // 2025-12-03 03:00 UTC == 11:00 WITA
+    const el = document.getElementById('countdown');
+    function update(){
+      const now = Date.now();
+      let diff = target - now;
+      if(diff<=0){ el.textContent='Wedding Day — Congratulations!'; return; }
+      const d = Math.floor(diff/(1000*60*60*24));
+      diff -= d*(1000*60*60*24);
+      const h = Math.floor(diff/(1000*60*60));
+      diff -= h*(1000*60*60);
+      const m = Math.floor(diff/(1000*60));
+      diff -= m*(1000*60);
+      const s = Math.floor(diff/1000);
+      el.textContent = `${d} days · ${String(h).padStart(2,'0')} : ${String(m).padStart(2,'0')} : ${String(s).padStart(2,'0')}`;
+    }
+    update(); setInterval(update,1000);
+  })();
+
+  // === Audio persist across pages using session flag ===
+  (function(){
+    const audio = document.getElementById('player');
+    const toggle = document.getElementById('audioToggle');
+    // If arrived from cover and session indicates persistAudio, attempt play
+    try{
+      if(sessionStorage.getItem('persistAudio') === 'true'){
+        const p = audio.play();
+        if(p !== undefined) p.catch(()=>{ /* blocked */ });
+        sessionStorage.removeItem('persistAudio');
+        toggle.textContent = '🔊';
+      } else {
+        // attempt silent autoplay (may fail)
+        const p = audio.play();
+        if(p !== undefined) p.catch(()=>{ toggle.textContent = '🔇'; });
       }
-      update(); setInterval(update,1000);
+    }catch(e){}
+
+    // toggle control
+    toggle.addEventListener('click', ()=>{
+      if(audio.paused){ audio.play(); toggle.textContent = '🔊'; }
+      else{ audio.pause(); toggle.textContent = '🔇'; }
+    });
+  })();
+
+  // === Guestbook: JSONBin integration with fallback to localStorage ===
+  (function(){
+    const messagesEl = document.getElementById('messages');
+    const nameInput = document.getElementById('name');
+    const msgInput = document.getElementById('message');
+    const sendBtn = document.getElementById('sendBtn');
+    const clearLocalBtn = document.getElementById('clearLocal');
+
+    const LOCAL_KEY = 'indah_arif_guest_local_v1';
+
+    // Render helper (chronological: oldest on top)
+    function renderMessages(arr){
+      messagesEl.innerHTML = '';
+      if(!arr || !arr.length) { messagesEl.innerHTML = '<div style="color:#777">No wishes yet — be the first to send one.</div>'; return; }
+      // arr assumed chronological (oldest first)
+      arr.forEach(item=>{
+        const d = new Date(item.t || item.timestamp || 0);
+        const div = document.createElement('div');
+        div.className = 'msg';
+        const name = sanitizeText(item.name || 'Anonymous');
+        const msg = sanitizeText(item.message || item.msg || '');
+        div.innerHTML = `<strong>${escapeHtml(name)}</strong><div style="color:#555;margin-top:6px">${escapeHtml(msg)}</div><div class="meta">${d.toLocaleString()}</div>`;
+        messagesEl.appendChild(div);
+      });
+    }
+
+    // Escape helper
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+    // Fetch from JSONBin
+    async function fetchFromJSONBin(){
+      if(!JSONBIN_ENABLED || BIN_ID.includes('REPLACE')) return null;
+      try{
+        const res = await fetch(`${JSONBIN_BASE}/${BIN_ID}/latest`, { method:'GET', headers: { 'X-Master-Key': JSONBIN_API_KEY } });
+        if(!res.ok) throw new Error('Fetch failed');
+        const data = await res.json();
+        // JSONBin v3 wraps data in record.record
+        const record = data && data.record ? data.record : data;
+        // Expect record to be an array
+        if(Array.isArray(record)) return record;
+        return null;
+      }catch(e){
+        console.warn('JSONBin fetch failed', e);
+        return null;
+      }
+    }
+
+    // Save to JSONBin (append)
+    async function appendToJSONBin(entry){
+      if(!JSONBIN_ENABLED || BIN_ID.includes('REPLACE')) return false;
+      try{
+        // Read current
+        const cur = await fetchFromJSONBin();
+        let arr = Array.isArray(cur) ? cur.slice() : [];
+        arr.push({ name: entry.name, message: entry.message, t: Date.now() });
+        // overwrite bin with new array
+        const res = await fetch(`${JSONBIN_BASE}/${BIN_ID}`, { 
+          method: 'PUT',
+          headers: {
+            'Content-Type':'application/json',
+            'X-Master-Key': JSONBIN_API_KEY
+          },
+          body: JSON.stringify(arr)
+        });
+        return res.ok;
+      }catch(e){
+        console.warn('appendToJSONBin failed', e);
+        return false;
+      }
+    }
+
+    // Local fallback storage functions (also keep chronological, push to end)
+    function loadLocal(){ return JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]'); }
+    function saveLocal(arr){ localStorage.setItem(LOCAL_KEY, JSON.stringify(arr)); }
+
+    // Initial load: try JSONBin -> fallback to local
+    (async function init(){
+      let arr = await fetchFromJSONBin();
+      if(arr && Array.isArray(arr)) { renderMessages(arr); return; }
+      // fallback
+      arr = loadLocal();
+      renderMessages(arr);
     })();
 
-    // guestbook localStorage
-    (function(){
-      const key='guestbook_indah_arif';
-      const form=document.getElementById('guestForm');
-      const messages=document.getElementById('messages');
-      function render(){
-        let arr=JSON.parse(localStorage.getItem(key)||'[]');
-        messages.innerHTML='';
-        arr.slice().reverse().forEach(i=>{
-          const div=document.createElement('div');
-          div.className='msg';
-          div.innerHTML='<strong>'+escape(i.name)+'</strong><div>'+escape(i.msg)+'</div>';
-          messages.appendChild(div);
-        });
+    // Send handler: first try JSONBin append; if fails, save to local
+    sendBtn.addEventListener('click', async ()=>{
+      const name = (nameInput.value || '').trim();
+      const msg = (msgInput.value || '').trim();
+      if(!name || !msg) return alert('Please enter your name and message.');
+      const entry = { name: sanitizeText(name), message: sanitizeText(msg) };
+
+      // Try JSONBin
+      const ok = await appendToJSONBin(entry);
+      if(ok){
+        // re-fetch and render from JSONBin to ensure all visitors see same order
+        const arr = await fetchFromJSONBin();
+        if(arr && Array.isArray(arr)){ renderMessages(arr); nameInput.value=''; msgInput.value=''; return; }
       }
-      form.onsubmit=e=>{
-        e.preventDefault();
-        const n=form.guestName.value.trim(),m=form.guestMsg.value.trim();
-        if(!n||!m)return;
-        const arr=JSON.parse(localStorage.getItem(key)||'[]');
-        arr.push({name:n,msg:m});
-        localStorage.setItem(key,JSON.stringify(arr));
-        form.reset();render();
-      };
-      function escape(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]))}
-      render();
-    })();
+
+      // If JSONBin disabled or failed, fallback to local
+      const arrLocal = loadLocal();
+      arrLocal.push({ name: entry.name, message: entry.message, t: Date.now() });
+      saveLocal(arrLocal);
+      renderMessages(arrLocal);
+      nameInput.value=''; msgInput.value='';
+    });
+
+    clearLocalBtn.addEventListener('click', ()=>{
+      if(confirm('Clear local stored guest wishes? This will only remove local copy, not remote JSONBin data.')){
+        localStorage.removeItem(LOCAL_KEY);
+        renderMessages([]);
+      }
+    });
+
+  })();
   </script>
 </body>
 </html>
